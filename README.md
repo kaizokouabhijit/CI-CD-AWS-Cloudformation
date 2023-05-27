@@ -1,7 +1,22 @@
 # CI-CD-AWS-Cloudformation
 
+Python
+Docker
+AWS Lambda
+AWS ECR
+AWS CloudFormation
+Shell Scripting
 
 
+
+
+
+
+
+
+
+
+**Error and fix**
 The push refers to repository [313879473220.dkr.ecr.us-east-2.amazonaws.com/aws]
 5f70bf18a086: Preparing
 e157dbd381ff: Preparing
