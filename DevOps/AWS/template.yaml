@@ -1,0 +1,51 @@
+Parameters:
+        ENV:
+          Type: String
+
+
+Resources:
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+            Action:
+                - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AWSLambda_FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonEventBridgeFullAccess"
+
+
+ 
+  Function:
+      Type: AWS::Lambda::Function
+      Properties:
+        Architectures:
+          - x86_64
+        Code:
+          ImageUri: !Join
+            - ''
+            - - !Ref AWS::AccountId
+              - '.dkr.ecr.'
+              - !Ref AWS::Region
+              - '.amazonaws.com/aws.:v1.0'
+        PackageType: Image
+        Role: !GetAtt Role.Arn
+        Timeout: 900
+
+  LambdaFunctionEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Sub "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:newtestqueue"
+      FunctionName: !GetAtt Function.Arn
