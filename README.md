@@ -1,11 +1,11 @@
 # CI-CD-AWS-Cloudformation
 
-**Python
+****Python
 Docker
 AWS Lambda
 AWS ECR
 AWS CloudFormation
-Shell Scripting**
+Shell Scripting****
 
 
 
