@@ -32,3 +32,7 @@ command - aws ecr get-login-password --region us-east-2 | docker login --usernam
 This command retrieves a new authentication token using the AWS CLI and then uses it to log in to your ECR registry.
 
 Retry the Docker push command: After reauthentication, you can try pushing the Docker image to ECR again by running the command you used previously.
+
+
+
+docker run  --volume "C:\Users\abhijit.s\OnTarget\lambda-function:/code" -it unix_container /bin/bash - to mount a folder to the DOcker container
