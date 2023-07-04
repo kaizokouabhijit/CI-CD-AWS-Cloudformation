@@ -6,7 +6,7 @@ pipeline
         {
             steps
             {
-            sh 'echo build stage'
+            sh 'echo ${env.CHANGE_AUTHOR}'
             }
         }
         stage('Test')
