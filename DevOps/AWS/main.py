@@ -1,7 +1,7 @@
 
 
 def lambda_handler(event, context):
-    print("Hello world")
+    print("Hello world of devops")
     print(context)
 
 
