@@ -29,7 +29,7 @@ WORKDIR /code
 # RUN dos2unix ./ot_deploy_forecaster.sh
 
 # to mount folders in the container image, use the command below to run the container
-# docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/on/your/host:/path/in/container python3-10
+# docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/on/your/host:/path/in/container imageName
 
 
 
