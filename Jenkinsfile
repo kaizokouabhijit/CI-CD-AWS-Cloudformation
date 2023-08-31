@@ -31,8 +31,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'ubuntu --version'
-                sh 'svn --version'
+                echo "Inside docker container, probably!"
             }
         }
     }
