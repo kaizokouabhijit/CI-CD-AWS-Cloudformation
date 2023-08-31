@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y docker-ce
 
-ADD path to folder\* \code
+# ADD path to folder\* \code
 
 
 
