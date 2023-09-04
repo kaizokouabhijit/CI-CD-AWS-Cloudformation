@@ -69,13 +69,7 @@ region=$(aws configure get region)
 region=${region:-us-east-2}
 
 
-IF the error is "docker run --name jenkins-docker --rm --detach ^
-  --privileged --network jenkins --network-alias docker ^
-  --env DOCKER_TLS_CERTDIR=/certs ^
-  --volume jenkins-docker-certs:/certs/client ^
-  --volume jenkins-data:/var/jenkins_home ^
-  --publish 2376:2376 ^
-  docker:dind"
+IF the error is "is docker daemon even running?"
 
 docker run --name jenkins-docker --rm --detach ^
   --privileged --network jenkins --network-alias docker ^
@@ -85,6 +79,15 @@ docker run --name jenkins-docker --rm --detach ^
   --publish 2376:2376 ^
   docker:dind
 
+
+JENKINSFILE
+
+Here, when the pipeline is run with this jenkinsfile script
+
+First it will create a Docker container from the Dockerfile in same directory as Jenkinsfile
+This docker container will then be used to continue with other build related work
+
+Here, that other build related work includes creating another docker image using the Dockerfile present inside the Java/ folder
 
 
 
