@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh "docker --version"
                 sh "dir"
-                sh "cd Java/"
+                cd Java/
                 sh "pwd"
             }
         }
