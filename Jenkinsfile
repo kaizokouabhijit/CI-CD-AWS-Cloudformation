@@ -46,7 +46,7 @@ pipeline {
                 {
                 sh "pwd"
                 // dockerImage = docker.build "testimage":"testtag"
-                sh "docker build -t testimge ."
+                dockerImage = docker.build "$IMAGE_NAME:$IMAGE_TAG"
                 }
                 sh "docker --version"
                 sh "dir"
