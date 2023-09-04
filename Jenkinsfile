@@ -31,7 +31,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                dir('/Java')
+                dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {sh "pwd"}
                 sh "docker --version"
                 sh "dir"
