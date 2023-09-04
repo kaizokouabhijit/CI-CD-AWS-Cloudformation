@@ -32,6 +32,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh "docker --version"
+                sh "dir"
+                sh "pwd"
             }
         }
     }
