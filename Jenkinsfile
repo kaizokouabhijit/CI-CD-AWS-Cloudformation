@@ -31,14 +31,14 @@ pipeline {
     {
         dockerImage = ""
     }
-    // agent { dockerfile true }
-    agent {
-		        docker { 
-		          image 'ubuntu:latest' 
-		          args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-		          reuseNode true		          
-		       }
-		    }
+    agent { dockerfile true }
+    // agent {
+		  //       docker { 
+		  //         image 'ubuntu:latest' 
+		  //         args '-u root -v /var/run/docker.sock:/var/run/docker.sock -v'
+		  //         reuseNode true		          
+		  //      }
+		  //   }
     stages {
         stage('Test') {
             steps {
