@@ -50,8 +50,6 @@ pipeline {
                 // dockerImage = docker.build "testimage":"testtag"
                 dockerImage = docker.build "$IMAGE_NAME:$IMAGE_TAG"
                 }
-                docker --version
-                dir
                 pwd
             }
         }
