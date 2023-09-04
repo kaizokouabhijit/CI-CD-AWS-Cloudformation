@@ -33,9 +33,8 @@ pipeline {
             steps {
                 sh "docker --version"
                 sh "dir"
-                sh "cd Java"
+                sh "cd Java/"
                 sh "pwd"
-                sh "docker build -t testimage ."
             }
         }
     }
