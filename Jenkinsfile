@@ -52,7 +52,7 @@ pipeline {
 		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
-                dockerImage = docker.build "testimage":"testtag"
+                docker build -t testimage .
                 
                 }
                 pwd
