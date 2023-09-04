@@ -36,7 +36,6 @@ pipeline {
                 sh "cd Java"
                 sh "pwd"
                 sh "docker build -t testimage ."
-"
             }
         }
     }
