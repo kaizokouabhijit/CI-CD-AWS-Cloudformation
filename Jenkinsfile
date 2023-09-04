@@ -52,13 +52,13 @@ pipeline {
 		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
-                docker build -t testimage .
-                
+                docker build -t testimage .                
                 }
                 pwd
             }
         }
-    }}
+    }
+    }
 }
 
 
