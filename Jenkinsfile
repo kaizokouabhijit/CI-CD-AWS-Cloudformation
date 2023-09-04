@@ -42,18 +42,20 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+		    script
+		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
-                sh "pwd"
+                pwd
                 // dockerImage = docker.build "testimage":"testtag"
                 dockerImage = docker.build "$IMAGE_NAME:$IMAGE_TAG"
                 }
-                sh "docker --version"
-                sh "dir"
-                sh "pwd"
+                docker --version
+                dir
+                pwd
             }
         }
-    }
+    }}
 }
 
 
