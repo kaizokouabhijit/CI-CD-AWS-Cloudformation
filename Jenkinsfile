@@ -33,7 +33,7 @@ pipeline {
     }
     // agent { 
 dockerfile true
-args '-u root -v /var/run/docker.sock:/var/run/docker.sock
+args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 }
     agent {
 		        docker { 
