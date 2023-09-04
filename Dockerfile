@@ -15,7 +15,7 @@ RUN apt-get update && \
 
 # ADD path to folder\* \code
 
-
+RUN echo "building docker image"
 
 WORKDIR /code
 
