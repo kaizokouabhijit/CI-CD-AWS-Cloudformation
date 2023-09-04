@@ -31,14 +31,14 @@ pipeline {
     {
         dockerImage = ""
     }
-    agent { dockerfile true }
-    // agent {
-		  //       docker { 
-		  //         image 'ubuntu:latest' 
-		  //         args '-u root -v /var/run/docker.sock:/var/run/docker.sock -v'
-		  //         reuseNode true		          
-		  //      }
-		  //   }
+    // agent { dockerfile true }
+    agent {
+		        docker { 
+		          image 'gradle:7.6.1-jdk8' 
+		          args '-u root -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/.gradle:$HOME/.gradle -e IN_JENKINS_DOCKER_BUILD=true'
+		          reuseNode true		          
+		       }
+		    }
     stages {
         stage('Test') {
             steps {
