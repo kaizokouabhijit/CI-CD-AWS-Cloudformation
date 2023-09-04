@@ -27,13 +27,19 @@
 // }
 
 pipeline {
+    environment
+    {
+        dockerImage = ""
+    }
     agent { dockerfile true }
     stages {
         stage('Test') {
             steps {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
-                {sh "pwd"
-                def dockerImage = docker.build "testimage":"testtag"}
+                {
+                sh "pwd"
+                dockerImage = docker.build "testimage":"testtag"
+                }
                 sh "docker --version"
                 sh "dir"
                 sh "pwd"
