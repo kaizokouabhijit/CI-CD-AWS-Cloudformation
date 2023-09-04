@@ -14,7 +14,7 @@ RUN apt-get update && \
     apt-get install -y docker-ce
 
 # ADD path to folder\* \code
-
+VOLUME /var/run/docker.sock
 RUN echo "building docker image"
 
 WORKDIR /code
