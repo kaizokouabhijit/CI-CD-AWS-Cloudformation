@@ -33,7 +33,6 @@ pipeline {
     }
     agent {
                 dockerfile{
-                label 'slave-label'
                 args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 		reuseNode true
                 }
