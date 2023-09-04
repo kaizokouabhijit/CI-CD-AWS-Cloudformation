@@ -47,8 +47,8 @@ pipeline {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
                 pwd
-                // dockerImage = docker.build "testimage":"testtag"
-                dockerImage = docker.build "$IMAGE_NAME:$IMAGE_TAG"
+                dockerImage = docker.build "testimage":"testtag"
+                
                 }
                 pwd
             }
