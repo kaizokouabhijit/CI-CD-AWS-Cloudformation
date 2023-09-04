@@ -31,9 +31,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                dir('/Java')
                 sh "docker --version"
                 sh "dir"
-                cd Java/
                 sh "pwd"
             }
         }
