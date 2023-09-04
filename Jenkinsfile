@@ -32,7 +32,8 @@ pipeline {
         dockerImage = ""
     }
     agent {
-                dockerfile{
+                dockerfile {
+		filename 'Dockerfile'
                 args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 		reuseNode true
                 }
@@ -40,7 +41,7 @@ pipeline {
     // agent {
 		  //       docker { 
 		  //         image 'gradle:7.6.1-jdk8' 
-		  //         args '-u root -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/.gradle:$HOME/.gradle -e IN_JENKINS_DOCKER_BUILD=true'
+		  //         args '-v /var/run/docker.sock:/var/run/docker.sock'
 		  //         reuseNode true		          
 		  //      }
 		  //   }
@@ -51,7 +52,6 @@ pipeline {
 		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
-                pwd
                 dockerImage = docker.build "testimage":"testtag"
                 
                 }
