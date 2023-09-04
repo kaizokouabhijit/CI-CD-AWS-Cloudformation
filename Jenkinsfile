@@ -33,7 +33,7 @@ pipeline {
             steps {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {sh "pwd"
-                dockerImage = docker.build "testimage":"testtag"}
+                def dockerImage = docker.build "testimage":"testtag"}
                 sh "docker --version"
                 sh "dir"
                 sh "pwd"
