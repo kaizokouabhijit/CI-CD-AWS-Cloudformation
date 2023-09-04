@@ -32,7 +32,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('/Java')
-                {echo "Body of dir step"}
+                {sh "pwd"}
                 sh "docker --version"
                 sh "dir"
                 sh "pwd"
