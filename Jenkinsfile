@@ -31,7 +31,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                echo "Inside docker container, probably!"
+                sh "docker --version"
             }
         }
     }
