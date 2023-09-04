@@ -37,6 +37,7 @@ pipeline {
                 args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 		reuseNode true
                 }
+    }
     // agent {
 		  //       docker { 
 		  //         image 'gradle:7.6.1-jdk8' 
