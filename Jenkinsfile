@@ -53,7 +53,7 @@ pipeline {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
                 sh "docker build -t testimage ."
-		sh "docker rmi testimage"
+		sh "docker rmi -f testimage"
                 }
                 pwd
             }
