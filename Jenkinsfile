@@ -52,8 +52,10 @@ pipeline {
 		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
                 {
-                sh "docker build -t testimage ."
-		sh "docker rmi -f testimage"
+
+		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
+
+		sh "dir"
                 }
                 pwd
             }
