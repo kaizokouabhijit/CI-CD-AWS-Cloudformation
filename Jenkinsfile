@@ -53,6 +53,8 @@ pipeline {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code')
                 {
 		sh "docker images"
+		sh "docker images purge"
+		sh "docker images"
 		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
 
 		sh "dir"
