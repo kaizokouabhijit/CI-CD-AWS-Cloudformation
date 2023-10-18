@@ -50,15 +50,17 @@ pipeline {
             steps {
 		    script
 		    {
-                dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code')
-                {
-		sh "pwd"
-		sh "docker images"
-		sh "dir"
-		// sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git"
-		// sh "dir"
-		sh "cd /jenkins-aws-lambda"
-		sh "pwd"
+                def workspaceDir = "/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code"
+                    def lambdaDir = "${workspaceDir}/jenkins-aws-lambda"
+                    
+                    dir(workspaceDir) {
+                        sh "pwd"
+                        sh "docker images"
+                        sh "ls"
+                        sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git ${lambdaDir}"
+                        sh "cd ${lambdaDir} && pwd"
+                        sh "ls ${lambdaDir}"
+                        sh "docker build -t my_docker_image ."
                                 
                 }
             }
