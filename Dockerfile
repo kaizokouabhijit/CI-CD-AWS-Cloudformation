@@ -23,13 +23,13 @@ WORKDIR /code
 # Run below commands inside the container cli
 
 # To install awscli
-# RUN apt-get update && apt-get install -y awscli
+RUN apt-get update && apt-get install -y awscli
 
 # To change permission of file
 # RUN chmod 777 filename
 
 # dos2unis is good for working with .sh, .yaml type of files
-# RUN apt-get install dos2unix
+RUN apt-get install dos2unix
 # RUN dos2unix ./filename.sh
 
 # to mount folders in the container image, use the command below to run the container
