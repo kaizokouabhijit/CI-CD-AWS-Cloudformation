@@ -52,13 +52,13 @@ pipeline {
 		    {
                 dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code')
                 {
-		pwd
+		sh "pwd"
 		sh "docker images"
 		sh "docker images purge"
 		sh "docker images"
-		pwd
+		sh "pwd"
 		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
-		pwd
+		sh "pwd"
 		sh "dir"
 
                                 def buildLambdalist = []
