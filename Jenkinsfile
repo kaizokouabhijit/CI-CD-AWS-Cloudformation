@@ -55,8 +55,9 @@ pipeline {
 		sh "pwd"
 		sh "docker images"
 		sh "dir"
-		sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git"
-		sh "cd jenkins-aws-lambda"
+		// sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git"
+		// sh "dir"
+		sh "cd /jenkins-aws-lambda"
 		sh "pwd"
                                 
                 }
