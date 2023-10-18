@@ -63,7 +63,6 @@ pipeline {
                         } else {
                             echo "Directory already exists: ${lambdaDir}"
                         }
-                        sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git ${lambdaDir}"
                         sh "cd ${lambdaDir} && pwd"
                         sh "ls ${lambdaDir}"
                         sh "docker build -t my_docker_image ."
