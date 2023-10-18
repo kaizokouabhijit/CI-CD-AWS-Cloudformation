@@ -50,12 +50,24 @@ pipeline {
             steps {
 		    script
 		    {
-                dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/Java')
+                dir('/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code')
                 {
 
 		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
 
 		sh "dir"
+
+                                def buildLambdalist = []
+                                buildLambdalist << "config-resolution"
+
+
+
+                                echo "reached here"
+                                sh "apt-get update && apt-get install -y awscli"
+                                sh "apt-get install dos2unix"
+                                sh "dir"
+                                echo "now here"
+                                
                 }
                 pwd
             }
@@ -63,16 +75,6 @@ pipeline {
     }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
