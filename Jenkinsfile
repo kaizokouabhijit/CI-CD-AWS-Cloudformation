@@ -57,6 +57,12 @@ pipeline {
                         sh "pwd"
                         sh "docker images"
                         sh "ls"
+			def dirExists = fileExists(lambdaDir)
+			if (!dirExists) {
+                            sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git ${lambdaDir}"
+                        } else {
+                            echo "Directory already exists: ${lambdaDir}"
+                        }
                         sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git ${lambdaDir}"
                         sh "cd ${lambdaDir} && pwd"
                         sh "ls ${lambdaDir}"
@@ -69,7 +75,10 @@ pipeline {
     }
 }
 
-
+def fileExists(filePath) {
+    def file = new File(filePath)
+    return file.exists() && file.isDirectory()
+}
 
 
 
