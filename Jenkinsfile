@@ -63,7 +63,7 @@ pipeline {
 
 
                                 echo "reached here"
-                                sh "apt-get update && apt-get install -y awscli"
+                                sh 'export DEBIAN_FRONTEND=noninteractive && echo "Asia" | apt-get update && apt-get install -y awscli'
                                 sh "apt-get install dos2unix"
                                 sh "dir"
                                 echo "now here"
