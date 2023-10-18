@@ -50,22 +50,11 @@ pipeline {
             steps {
 		    script
 		    {
-                def workspaceDir = "/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code"
-                    def lambdaDir = "${workspaceDir}/jenkins-aws-lambda"
-                    
+                def workspaceDir = "/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code"                    
                     dir(workspaceDir) {
                         sh "pwd"
                         sh "docker images"
-                        sh "ls"
-			if (!fileExists(lambdaDir)) {
-                            sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git ${lambdaDir}"
-                        } else {
-                            echo "Directory already exists: ${lambdaDir}"
-                        }
-                        sh "cd ${lambdaDir} && pwd"
-                        sh "ls ${lambdaDir}"
-                        sh "docker build -t my_docker_image ."
-                                
+                        sh "ls"                                
                 }
             }
         }
@@ -73,9 +62,6 @@ pipeline {
     }
 }
 
-def fileExists(filePath) {
-        return fileExists = new File(filePath).exists()
-}
 
 
 
