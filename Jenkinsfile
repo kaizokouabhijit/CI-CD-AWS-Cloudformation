@@ -54,7 +54,7 @@ pipeline {
                 {
 		sh "pwd"
 		sh "docker images"
-		sh "docker images purge"
+		sh "dir"
 		sh "docker images"
 		sh "pwd"
 		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
