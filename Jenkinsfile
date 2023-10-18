@@ -55,25 +55,11 @@ pipeline {
 		sh "pwd"
 		sh "docker images"
 		sh "dir"
-		sh "docker images"
+		sh "git clone https://github.com/kaizokouabhijit/jenkins-aws-lambda.git"
+		sh "cd jenkins-aws-lambda"
 		sh "pwd"
-		sh "git clone https://github.com/kaizokouabhijit/MySQL.git"
-		sh "pwd"
-		sh "dir"
-
-                                def buildLambdalist = []
-                                buildLambdalist << "xyz"
-
-
-
-                                echo "reached here"
-                                // sh 'export DEBIAN_FRONTEND=noninteractive && echo "Asia" | apt-get update && apt-get install -y awscli'
-                                sh "apt-get install dos2unix"
-                                sh "dir"
-                                echo "now here"
                                 
                 }
-                pwd
             }
         }
     }
