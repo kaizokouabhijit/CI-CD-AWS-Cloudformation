@@ -5,7 +5,7 @@
 FROM ubuntu:latest
 
 # Install Docker and other required packages
-
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
@@ -23,7 +23,7 @@ WORKDIR /code
 # Run below commands inside the container cli
 
 # To install awscli
-RUN apt-get update && apt-get install -y awscli
+RUN apt-get update && apt-get install -y awscli < "/dev/null"
 
 # To change permission of file
 # RUN chmod 777 filename
