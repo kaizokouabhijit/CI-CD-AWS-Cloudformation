@@ -23,6 +23,9 @@ pipeline {
                             script {
                                 
                                 sh "docker images"
+				sh "docker rmi -f 29380ca8cfb4"
+				sh "docker rmi -f 434560d5ea76"
+				    
 		echo "${buildLambdalist[0]}"
         }
     }
