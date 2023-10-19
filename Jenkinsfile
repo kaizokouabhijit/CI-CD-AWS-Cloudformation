@@ -1,4 +1,5 @@
-def buildList = ["Java"]   
+def buildList = ["Java"]
+def testName = "test"
 pipeline {
 
     environment
@@ -33,7 +34,7 @@ pipeline {
 
 			    
                             script {
-				        def customDisplayName = "${JAVA}"
+				        def customDisplayName = "${testName}-${JAVA}"
 				        currentBuild.displayName = customDisplayName
 				    echo "Build Number: ${env.BUILD_NUMBER}"
                     echo "Build Display Name: ${env.BUILD_DISPLAY_NAME}"
