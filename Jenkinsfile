@@ -30,8 +30,8 @@ pipeline {
 		 
                     stage('Build') {
                         steps{
-			    dir('Java')
-			    {
+
+			    
                             script {
                                 echo "${JAVA_HOME}"
                                 sh "docker images"
@@ -42,7 +42,7 @@ pipeline {
 				    sh "chmod 777 ${JAVA}/build/*"
 				    
                              
-	    }}}}}}
+	    }}}}}
 	}
     }
 }
