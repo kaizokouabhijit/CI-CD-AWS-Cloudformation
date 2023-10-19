@@ -31,7 +31,7 @@ pipeline {
                     stage('Build') {
                         steps {
                             script {
-                                
+                                echo "${JAVA_HOME}"
                                 sh "docker images"
 				    echo "${buildLambdaList[0]}"
 				    echo "${lambdas}"
