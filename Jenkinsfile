@@ -46,20 +46,19 @@ pipeline {
 		  //      }
 		  //   }
     stages {
-        stage('Test') {
-            steps {
-		    script
-		    {
-                def workspaceDir = "/var/jenkins_home/workspace/dockerContainerInsideBuildNode/code"                    
-                    dir(workspaceDir) {
-                        sh "pwd"
-                        sh "docker images"
-                        sh "ls"                                
+        stage('Build and test') {
+           agent {
+        dockerfile {
+		filename 'Dockerfile'
+                args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+		reuseNode true
                 }
-            }
-        }
-    }
-    }
+                }
+            matrix {
+                axes {
+                    axis {
+                        name 'lambdas'
+                        values "xyz"
 }
 
 
