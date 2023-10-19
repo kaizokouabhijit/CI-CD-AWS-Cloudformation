@@ -29,7 +29,7 @@ pipeline {
 		    stages {
 		 
                     stage('Build') {
-                        steps
+                        steps{
 			    dir('Java')
 			    {
                             script {
@@ -39,7 +39,7 @@ pipeline {
 				    echo "${lambdas}"
 				    sh './gradlew build'
                              
-	    }}}}}
+	    }}}}}}
 	}
     }
 }
