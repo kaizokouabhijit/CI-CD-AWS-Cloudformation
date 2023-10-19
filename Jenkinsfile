@@ -1,4 +1,4 @@
-def buildLambdaList = ["xyz"]   
+def buildLambdaList = ["Java"]   
 pipeline {
 
     environment
@@ -22,19 +22,22 @@ pipeline {
                 axes {
                     axis {
                         name 'lambdas'
-                        values "xyz"
+                        values "Java"
 }
 
 		}
 		    stages {
 		 
                     stage('Build') {
-                        steps {
+                        steps
+			    dir('Java')
+			    {
                             script {
                                 echo "${JAVA_HOME}"
                                 sh "docker images"
 				    echo "${buildLambdaList[0]}"
 				    echo "${lambdas}"
+				    sh './gradlew build'
                              
 	    }}}}}
 	}
