@@ -23,6 +23,8 @@ WORKDIR /code
 
 # To install awscli
 RUN apt-get update && apt-get install -y awscli < "/dev/null"
+RUN apt-get update && apt-get install -y openjdk-8-jdk
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # To change permission of file
 # RUN chmod 777 filename
