@@ -53,32 +53,11 @@ pipeline {
                             script {
                                 
                                 sh "docker images"
-                                
-                                def buildLambdalist = []
-                                buildLambdalist << "xyz" 
+				    echo "${buildLambdaList[0]}"
+				    echo "${lambdas}"
+                             
 	    }}}}}
 	}
     }
 }
-		
 
-
-
-
-
-
-
-
-
-                    stage('Build') {
-                        steps {
-                            script {
-                                
-                                sh "docker images"
-				sh "docker rmi -f 434560d5ea76"
-				    
-		echo "${buildLambdalist[0]}"
-        }
-    }
-}
-		    }}}}
