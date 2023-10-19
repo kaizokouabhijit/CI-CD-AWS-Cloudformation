@@ -1,56 +1,31 @@
-
+def buildLambdalist = ["xyz"]   
 
 pipeline {
-
     environment
     {
         dockerImage = ""
     }
-   agent any
-    stages {
-        stage('Build and test') {  
-            matrix {
-                axes {
-                    axis {
-                        name 'lambdas'
-                        values "xyz"
-			    
-}
+    agent any
 
-	}
-		    stage('Build Docker container')
-		    {
-			 agent {
-       		 dockerfile {
+    stages {
+
+        stage('Build and test') {
+           agent {
+        dockerfile {
 		filename 'Dockerfile'
                 args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 		reuseNode true
                 }
-                }   
-
-			    stages {
-		 
+                }
+		stages {
                     stage('Build') {
                         steps {
                             script {
                                 
                                 sh "docker images"
-                                
-                                def buildLambdalist = []
-                                buildLambdalist << "xyz" 
-	    }}}}
-		    }
-		    }
-	}
+
+                                if (buildLambdalist.contains(lambdas)) {
+					echo "${lambdas}"
+        }
     }
 }
-		
-
-
-
-
-
-
-
-
-
