@@ -33,8 +33,11 @@ pipeline {
 
 			    
                             script {
+				        def customDisplayName = "${JAVA}"
+				        currentBuild.displayName = customDisplayName
 				    echo "Build Number: ${env.BUILD_NUMBER}"
                     echo "Build Display Name: ${env.BUILD_DISPLAY_NAME}"
+		    echo "Build Display Name: ${currentBuild.displayName}"
                     echo "Job Name: ${env.JOB_NAME}"
                                 echo "${JAVA_HOME}"
                                 sh "docker images"
