@@ -1,11 +1,12 @@
 
 
 pipeline {
+
     environment
     {
         dockerImage = ""
     }
-   
+   agent any
     stages {
         stage('Build and test') {
            agent {
