@@ -37,7 +37,10 @@ pipeline {
                                 sh "docker images"
 				    echo "${buildLambdaList[0]}"
 				    echo "${lambdas}"
+				    sh "chmod 777 ${lambdas}/build/*"
+				    sh "chmod 777 ${lambdas}/gradlew"
 				    sh './gradlew build'
+				    sh "${lambdas}/gradlew -p ${lambdas} build"
                              
 	    }}}}}}
 	}
