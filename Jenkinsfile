@@ -8,19 +8,17 @@ pipeline {
     }
    agent any
     stages {
-        stage('Build and test') {
-           
+        stage('Build and test') {  
             matrix {
                 axes {
                     axis {
                         name 'lambdas'
                         values "xyz"
-
 			    
 }
 
-		}
-		    stage
+	}
+		    stage('Build Docker container')
 		    {
 			 agent {
        		 dockerfile {
