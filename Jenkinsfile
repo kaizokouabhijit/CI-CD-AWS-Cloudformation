@@ -29,6 +29,7 @@ pipeline {
 		    stages {
 		 
                     stage('Build') {
+			    displayName '${JAVA}'
                         steps{
 
 			    
