@@ -29,11 +29,13 @@ pipeline {
 		    stages {
 		 
                     stage('Build') {
-			    displayName '${JAVA}'
                         steps{
 
 			    
                             script {
+				    echo "Build Number: ${env.BUILD_NUMBER}"
+                    echo "Build Display Name: ${env.BUILD_DISPLAY_NAME}"
+                    echo "Job Name: ${env.JOB_NAME}"
                                 echo "${JAVA_HOME}"
                                 sh "docker images"
 				    echo "${buildList[0]}"
