@@ -1,4 +1,4 @@
-def buildLambdalist = ["xyz"]   
+def buildLambdaList = ["xyz"]   
 pipeline {
 
     environment
