@@ -40,6 +40,8 @@ pipeline {
 				    sh "chmod 777 ${JAVA}/gradlew"
 				    sh "${JAVA}/gradlew -p ${JAVA} build"
 				    sh "chmod 777 ${JAVA}/build/*"
+				    sh "chmod 777 ${JAVA}/Dockerfile"
+				    sh "docker build -t testImage ${JAVA}/"
 				    
                              
 	    }}}}}
