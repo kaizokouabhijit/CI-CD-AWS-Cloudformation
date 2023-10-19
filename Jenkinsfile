@@ -1,4 +1,4 @@
-def buildLambdaList = ["Java"]   
+def buildList = ["Java"]   
 pipeline {
 
     environment
@@ -21,7 +21,7 @@ pipeline {
 		    
                 axes {
                     axis {
-                        name 'lambdas'
+                        name 'JAVA'
                         values "Java"
 }
 
@@ -35,12 +35,12 @@ pipeline {
                             script {
                                 echo "${JAVA_HOME}"
                                 sh "docker images"
-				    echo "${buildLambdaList[0]}"
-				    echo "${lambdas}"
-				    sh "chmod 777 ${lambdas}/build/*"
-				    sh "chmod 777 ${lambdas}/gradlew"
-				    sh './gradlew build'
-				    sh "${lambdas}/gradlew -p ${lambdas} build"
+				    echo "${buildList[0]}"
+				    echo "${JAVA}"
+				    sh "chmod 777 ${JAVA}/gradlew"
+				    sh "${JAVA}/gradlew -p ${JAVA} build"
+				    sh "chmod 777 ${JAVA}/build/*"
+				    
                              
 	    }}}}}}
 	}
