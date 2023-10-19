@@ -23,9 +23,7 @@ pipeline {
                             script {
                                 
                                 sh "docker images"
-
-                                if (buildLambdalist.contains(lambdas)) {
-					echo "${lambdas}"
+		echo "${buildLambdalist[0]}"
         }
     }
 }
