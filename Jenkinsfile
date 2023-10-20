@@ -45,7 +45,8 @@ pipeline {
 
 			    
                             script {
-				        def customDisplayName = "${testName}-${JAVA}"
+				    if (buildList.contains(${JAVA}))
+				    {def customDisplayName = "${testName}-${JAVA}"
 				        currentBuild.displayName = customDisplayName
 				    echo "Build Number: ${env.BUILD_NUMBER}"
                     echo "Build Display Name: ${env.BUILD_DISPLAY_NAME}"
@@ -59,7 +60,7 @@ pipeline {
 				    sh "${JAVA}/gradlew -p ${JAVA} build"
 				    sh "chmod 777 ${JAVA}/build/*"
 				    sh "chmod 777 ${JAVA}/Dockerfile"
-				    sh "docker build -t test-image ${JAVA}/"
+				    sh "docker build -t test-image ${JAVA}/"}
 				    
                              
 	    }}}}}
