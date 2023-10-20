@@ -21,9 +21,8 @@ pipeline {
             steps
             {
                 script{
-                    echo "dir"
-		pwd
-			echo "pwd"
+		sh "dir"
+		sh "pwd"
                 }
             }
         }
@@ -45,10 +44,8 @@ pipeline {
 
 			    
                             script {
-			 echo "dir"
-
-				    pwd
-			echo "pwd"
+		sh "dir"
+		sh "pwd"
 				    }
 				    
                              
