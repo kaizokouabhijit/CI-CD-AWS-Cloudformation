@@ -45,7 +45,7 @@ pipeline {
 
 			    
                             script {
-				    if (buildList.contains(${JAVA}))
+				    if (buildList.contains(JAVA))
 				    {def customDisplayName = "${testName}-${JAVA}"
 				        currentBuild.displayName = customDisplayName
 				    echo "Build Number: ${env.BUILD_NUMBER}"
