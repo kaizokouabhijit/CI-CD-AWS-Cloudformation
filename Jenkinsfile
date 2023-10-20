@@ -1,4 +1,4 @@
-def buildList = ["Java"]
+def buildList = ["Java", "DevOps"]
 def testName = "test"
 pipeline {
 
@@ -23,7 +23,7 @@ pipeline {
                 axes {
                     axis {
                         name 'JAVA'
-                        values "Java"
+                        values "Java", "DevOps"
 }
 
 		}
