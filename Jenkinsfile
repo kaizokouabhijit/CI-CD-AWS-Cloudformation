@@ -1,4 +1,4 @@
-def buildList = ["Java"]
+def buildList = ["Java", "DevOps"]
 def testName = "test"
 pipeline {
 
@@ -10,17 +10,11 @@ pipeline {
     stages {
  stage("Build stage")
         {
-		agent {
-       		 dockerfile {
-		filename 'Dockerfile'
-		args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-		reuseNode true
-                }
-                }
+		
             steps
             {
                 script{
-                    echo "${env.BRANCH_NAME}"
+                    echo "here"
                 }
             }
         }
@@ -28,7 +22,13 @@ pipeline {
 	    stage('Build and test') {
            
             matrix {
-
+		agent {
+       		 dockerfile {
+		filename 'Dockerfile'
+		args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+		reuseNode true
+                }
+                }
 		    
 		    
                 axes {
