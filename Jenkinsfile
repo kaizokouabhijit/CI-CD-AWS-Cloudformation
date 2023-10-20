@@ -8,17 +8,28 @@ pipeline {
     }
    agent any
     stages {
-        stage('Build and test') {
-           
-            matrix {
-
-		    agent {
+ stage("Build stage")
+        {
+		agent {
        		 dockerfile {
 		filename 'Dockerfile'
 		args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
 		reuseNode true
                 }
                 }
+            steps
+            {
+                script{
+                    echo "${env.BRANCH_NAME}"
+                }
+            }
+        }
+	    
+	    stage('Build and test') {
+           
+            matrix {
+
+		    
 		    
                 axes {
                     axis {
