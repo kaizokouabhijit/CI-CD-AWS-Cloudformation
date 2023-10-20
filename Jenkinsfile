@@ -1,4 +1,4 @@
-def buildList = ["Java", "DevOps"]
+def buildList = ["Java"]
 def testName = "test"
 pipeline {
 
