@@ -21,7 +21,9 @@ pipeline {
             steps
             {
                 script{
-                    echo "here"
+                    echo "dir"
+		pwd
+			echo "pwd"
                 }
             }
         }
@@ -43,23 +45,11 @@ pipeline {
 
 			    
                             script {
-				    if (buildList.contains(JAVA))
-				    {def customDisplayName = "${testName}-${JAVA}"
-				        currentBuild.displayName = customDisplayName
-				    echo "Build Number: ${env.BUILD_NUMBER}"
-				     echo "Branch name: ${env.BRANCH_NAME}"
-                    echo "Build Display Name: ${env.BUILD_DISPLAY_NAME}"
-		    echo "Build Display Name: ${currentBuild.displayName}"
-                    echo "Job Name: ${env.JOB_NAME}"
-                                echo "${JAVA_HOME}"
-                                sh "docker images"
-				    echo "${buildList[0]}"
-				    echo "${JAVA}"
-				    sh "chmod 777 ${JAVA}/gradlew"
-				    sh "${JAVA}/gradlew -p ${JAVA} build"
-				    sh "chmod 777 ${JAVA}/build/*"
-				    sh "chmod 777 ${JAVA}/Dockerfile"
-				    sh "docker build -t test-image ${JAVA}/"}
+			 echo "dir"
+
+				    pwd
+			echo "pwd"
+				    }
 				    
                              
 	    }}}}}
