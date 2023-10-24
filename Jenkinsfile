@@ -67,6 +67,7 @@ def listb = ["abc", "xyz", "pqr", "mno"]
 
 pipeline
 {
+agent any
 	stages
 	{
 		stage("Build")
