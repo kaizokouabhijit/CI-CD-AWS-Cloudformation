@@ -71,7 +71,11 @@ pipeline
 	{
 		stage("Build")
 		{
-			lista.each { commit ->
+	steps
+			{
+				script
+				{
+		lista.each { commit ->
             if (commit in listb) {
                 echo "Found and removing $commit from commitList"
                 listb.remove(commit)
@@ -79,6 +83,8 @@ pipeline
         }
         
         echo "Modified commitList: ${listb}"
+				}
+			}
 		}
 	}
 }
