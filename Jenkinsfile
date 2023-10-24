@@ -21,8 +21,16 @@ pipeline {
             steps
             {
                 script{
-		sh "dir"
+			sh "dir"
 		sh "pwd"
+
+
+			def lastCommitID = env.GIT_PREVIOUS_COMMIT
+                    def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
+                    def commitList = revlist.split("\n")
+                    // commitList.drop(1)
+                    echo "GIT_PREVIOUS_SUCCESSFUL_COMMIT: ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                    echo "commitList - ${commitList}"
                 }
             }
         }
