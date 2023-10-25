@@ -76,7 +76,7 @@ agent any
 				script
 				{
 		def lastCommitID = env.GIT_PREVIOUS_COMMIT
-                    def revlist = sh(script: "git rev-list", returnStdout: true).trim()
+                    def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
 		echo "${commitList}"
                     def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT.tokenize('\n')
