@@ -85,8 +85,16 @@ agent any
                     if (commit in commitList) {
                     echo "Found and removing $commit from commitList"
                     commitList= commitList - commit
-			     echo "${commitList}"
+			     
 				}
 			}
+					echo "${commitList}"
+					for (commit in commitList) {
+                        def commits = sh(script: "git show --name-only --pretty=format:  ${commit}", returnStdout: true).trim()
+
+                        for (key in commits.split("\n")) {
+				if (key  =~ /(\.py|\.java|\.yaml|deployment_param_config|\.sh)$/)
+				{
+					echo "$key"}}}
 		}
 	    }}}}
