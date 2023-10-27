@@ -96,7 +96,7 @@ agent any
                         def commits = sh(script: "git show --name-only --pretty=format:  ${commit}", returnStdout: true).trim()
 
                         for (key in commits.split("\n")) {
-				if (key  =~ /(\.py|\.java|\.yaml|deployment_param_config|\.sh)$/)
+				if (key  =~ /(\.py|\.java|\.yaml)$/)
 				{
 					echo "$key"}}}
 		}
