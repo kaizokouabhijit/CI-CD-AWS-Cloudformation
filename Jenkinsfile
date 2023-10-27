@@ -91,7 +91,7 @@ agent any
 					echo "${commitList}"
 					if (commitList.isEmpty()) {
                         echo "Commit list is empty. Exiting the pipeline."
-                        return
+                        return}
 					for (commit in commitList) {
                         def commits = sh(script: "git show --name-only --pretty=format:  ${commit}", returnStdout: true).trim()
 
@@ -99,5 +99,5 @@ agent any
 				if (key =~ /(\.py|\.java|\.yaml|deployment_param_config|\.sh)$/)
 				{
 					echo "$key"}}}
-		}
+		
 	    }}}}}
