@@ -99,6 +99,7 @@ agent any
 				if (key =~ /(\.py|\.java|\.yaml|deployment_param_config|\.sh)$/)
 				{
 					echo "$key"
+					sh "chmod 777 Java/docker_tag_push_image.sh"
 				sh "Java/docker_tag_push_image.sh"
 				}}}
 		
