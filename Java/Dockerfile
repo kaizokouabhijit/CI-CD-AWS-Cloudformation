@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-WORKDIR /java
+WORKD /java
 ARG target_image
 COPY  /src/main/java/App.java .
 RUN echo "building test Image"
