@@ -98,6 +98,8 @@ agent any
                         for (key in commits.split("\n")) {
 				if (key =~ /(\.py|\.java|\.yaml|deployment_param_config|\.sh)$/)
 				{
-					echo "$key"}}}
+					echo "$key"
+				sh "Java/docker_tag_push_image.sh"
+				}}}
 		
 	    }}}}}
