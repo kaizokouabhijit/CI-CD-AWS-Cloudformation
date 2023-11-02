@@ -19,13 +19,13 @@ agent any
 		echo "${commitList}"
                     def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
                     echo "${successfulCommits}"
-                    successfulCommits.each { commit ->
-                    if (commit in commitList) {
-                    echo "Found and removing $commit from commitList"
-                    commitList= commitList - commit
+                    
+                    if (successfulCommits in commitList) {
+                    echo "Found and removing $successfulCommits from commitList"
+                    commitList= commitList - successfulCommits
 			     
 				}
-			}
+			
 					echo "${commitList}"
 					if (commitList.isEmpty()) {
                         echo "Commit list is empty. Exiting the pipeline."
