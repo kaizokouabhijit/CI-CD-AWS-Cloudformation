@@ -32,8 +32,11 @@ agent any
                         return}
 					for (commit in commitList) {
                         def commits = sh(script: "git show --name-only --pretty=format:  ${commit}", returnStdout: true).trim()
-			currentBuild.result = 'SUCCESS'
+						echo "here"
+			currentBuild.result = 'custom SUCCESS '
+						echo "now here"
 			return
+						echo "this shouldn't get printed"
                         for (key in commits.split("\n")) {
 				if (key =~ /(\.py|\.java)$/)
 				{
