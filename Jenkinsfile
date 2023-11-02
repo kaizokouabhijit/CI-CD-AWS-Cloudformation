@@ -16,16 +16,16 @@ agent any
 		def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
-		echo "commitList - ${commitList}"
+		echo "${commitList}"
                     def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
-                    echo "successfulCommits - ${successfulCommits}"
-                    successfulCommits.each { commit ->
-                    if (commit in commitList) {
-                    echo "Found and removing $commit from commitList"
-                    commitList= commitList - commit
+                    echo "${successfulCommits}"
+                    
+                    if (successfulCommits in commitList) {
+                    echo "Found and removing $successfulCommits from commitList"
+                    commitList= commitList - successfulCommits
 			     
 				}
-			}
+			
 					echo "${commitList}"
 					if (commitList.isEmpty()) {
                         echo "Commit list is empty. Exiting the pipeline."
@@ -36,7 +36,7 @@ agent any
                         for (key in commits.split("\n")) {
 				if (key =~ /(\.py|\.java)$/)
 				{
-					echo "key - $key"
+					echo "$key"
 					sh "chmod 777 Java/docker_tag_push_image.sh"
 				sh "Java/docker_tag_push_image.sh ${env.BRANCH_NAME}"
 				}}}
