@@ -16,9 +16,9 @@ agent any
 		def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
-		echo "${commitList}"
+		echo "commitList - ${commitList}"
                     def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
-                    echo "${successfulCommits}"
+                    echo "successfulCommits - ${successfulCommits}"
                     successfulCommits.each { commit ->
                     if (commit in commitList) {
                     echo "Found and removing $commit from commitList"
@@ -36,7 +36,7 @@ agent any
                         for (key in commits.split("\n")) {
 				if (key =~ /(\.py|\.java)$/)
 				{
-					echo "$key"
+					echo "key - $key"
 					sh "chmod 777 Java/docker_tag_push_image.sh"
 				sh "Java/docker_tag_push_image.sh"
 				}}}
