@@ -17,7 +17,7 @@ agent any
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
 		echo "${commitList}"
-                    def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT.tokenize('\n')
+                    def successfulCommits = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
                     echo "${successfulCommits}"
                     successfulCommits.each { commit ->
                     if (commit in commitList) {
