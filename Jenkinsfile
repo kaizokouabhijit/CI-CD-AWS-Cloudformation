@@ -37,8 +37,8 @@ agent any
 				if (key =~ /(\.py|\.java)$/)
 				{
 					echo "$key"
-					sh "chmod 777 Java/docker_tag_push_image.sh ${env.BRANCH_NAME}"
-				sh "Java/docker_tag_push_image.sh"
+					sh "chmod 777 Java/docker_tag_push_image.sh"
+				sh "Java/docker_tag_push_image.sh ${env.BRANCH_NAME}"
 				}}}
 		
 	    }}}}}
