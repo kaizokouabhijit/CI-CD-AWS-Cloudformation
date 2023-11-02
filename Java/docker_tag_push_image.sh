@@ -6,7 +6,6 @@ main_image="my-main-image"
 app_image="my-app-image"
 
 
-echo "$?"
 
 
 
