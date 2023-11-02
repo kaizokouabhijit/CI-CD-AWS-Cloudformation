@@ -38,7 +38,7 @@ agent any
 				{
 					echo "$key"
 					sh "chmod 777 Java/docker_tag_push_image.sh"
-				sh "Java/docker_tag_push_image.sh ${env.BRANCH_NAME}"
+				sh "Java/docker_tag_push_image.sh ${env.BRANCH_NAME} ${env.BUILD_NUMBER}"
 				}}}
 		
 	    }}}}}
