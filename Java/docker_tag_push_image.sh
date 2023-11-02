@@ -5,8 +5,7 @@ set -e
 main_image="my-main-image"
 app_image="my-app-image"
 
-docker rm main-container
-docker rm app-container
+
 echo "$?"
 
 
