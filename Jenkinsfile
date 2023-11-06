@@ -18,7 +18,7 @@ agent any
 				script
 				{
 					echo "ENV - ${ENV}"
-					echo "env.ENV - ${env.ENV}"
+					echo "env.ENV  - ${env.ENV}"
 					
 
 					if (env.BRANCH_NAME == "main")
