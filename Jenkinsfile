@@ -18,14 +18,17 @@ agent any
 				script
 				{
 					echo "ENV - ${ENV}"
+					echo "env.ENV - ${env.ENV}"
+					
 
 					if (env.BRANCH_NAME == "main")
                     {
                         echo "branch name is main"
-                        currentBuild.buildEnvironments.get("ENV").value = "stg"
+                        ENV = "stg"
                     }
 
 					echo "ENV now - ${ENV}"
+					echo "env.ENV now - ${env.ENV}"
 		def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
