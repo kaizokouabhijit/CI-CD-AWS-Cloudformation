@@ -4,6 +4,10 @@ def listb = ["abc", "xyz", "pqr", "mno"]
 
 pipeline
 {
+	environment
+	{
+		ENV = "qa"
+	}
 agent any
 	stages
 	{
@@ -13,6 +17,15 @@ agent any
 			{
 				script
 				{
+					echo "ENV - ${ENV}"
+
+					if (env.BRANCH_NAME == "main")
+                    {
+                        echo "branch name is main"
+                        currentBuild.buildEnvironments.get("ENV").value = "stg"
+                    }
+
+					echo "ENV now - ${ENV}"
 		def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
