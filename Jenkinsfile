@@ -27,6 +27,8 @@ agent any
                         ENV = "stg"
                     }
 
+					def mySecret = credentials('my-secret-id')
+					echo "mySecret - ${mySecret}"
 					echo "ENV now - ${ENV}"
 					echo "env.ENV now - ${env.ENV}"
 		def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
