@@ -27,6 +27,10 @@ agent any
                         ENV = "stg"
                     }
 					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
+
+if (lastCommitID == null) {
+    lastCommitID = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+}
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
 		echo "commitList - ${commitList}"
