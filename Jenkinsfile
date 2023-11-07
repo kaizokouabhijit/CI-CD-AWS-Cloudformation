@@ -29,6 +29,7 @@ agent any
 					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
 
 if (lastCommitID == null) {
+	echo "Setting last commit to head"
     lastCommitID = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
 }
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
