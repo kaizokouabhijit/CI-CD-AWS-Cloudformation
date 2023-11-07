@@ -26,7 +26,8 @@ agent any
                         echo "branch name is main"
                         ENV = "stg"
                     }
-
+					def changeLogSets  = currentBuild.changeSets
+					echo "changeLogSets - ${changeLogSets}"
 					def mySecret = credentials('my-secret-id')
 					echo 'mySecret - $mySecret'
 					echo "ENV now - ${ENV}"
