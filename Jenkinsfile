@@ -26,9 +26,10 @@ agent any
                         echo "branch name is main"
                         ENV = "stg"
                     }
-					checkout scm
-					def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStatus: true)
-                   			 echo "Changed files: ${changedFiles}"
+					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
+                    def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
+                    def commitList = revlist.split("\n") as List
+		echo "commitList - ${commitList}"
 					
 					
 					echo "ENV now - ${ENV}"
