@@ -27,11 +27,10 @@ agent any
                         ENV = "stg"
                     }
 					checkout scm
-					def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStatus: true).trim()
+					def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStatus: true)
                    			 echo "Changed files: ${changedFiles}"
 					
-					def mySecret = credentials('my-secret-id')
-					echo 'mySecret - $mySecret'
+					
 					echo "ENV now - ${ENV}"
 					echo "env.ENV now - ${env.ENV}"
 		
