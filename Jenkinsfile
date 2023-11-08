@@ -26,12 +26,8 @@ agent any
                         echo "branch name is main"
                         ENV = "stg"
                     }
-					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
+					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
 
-if (lastCommitID == null) {
-	echo "Setting last commit to head"
-    lastCommitID = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-}
                     def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
                     def commitList = revlist.split("\n") as List
 		echo "commitList - ${commitList}"
