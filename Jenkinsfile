@@ -1,10 +1,10 @@
 pipeline {
-    agent any
+    agent none
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     environment {
-        dockerImage = ""
+        dockerImage = "your-custom-docker-image:tag"
         folderName = ""
         skipRemainingStages = false
         ENV = "qa"
@@ -19,16 +19,19 @@ pipeline {
                         values 'linux', 'windows'
                     }
                 }
-                agent {
-                    docker {
-                        image 'your-custom-docker-image:tag'
-                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                    }
-                }
                 stages {
                     stage('Build on ${PLATFORM}') {
+                        agent {
+                            label 'your-docker-agent-label'
+                        }
                         steps {
-                            // Your build steps here, you can use the PLATFORM variable
+                            script {
+                                def customDockerImage = docker.build("${dockerImage}-${PLATFORM}", "-f Dockerfile .")
+
+                                customDockerImage.inside {
+                                    // Your build steps here, you can use the PLATFORM variable
+                                }
+                            }
                         }
                     }
                 }
@@ -36,9 +39,16 @@ pipeline {
         }
 
         stage('Test') {
-            agent any
+            agent {
+                label 'your-docker-agent-label'
+            }
             steps {
-                // Your test steps here
+                script {
+                    // Use the same Docker image for testing
+                    docker.image("${dockerImage}-linux").inside {
+                        // Your test steps here
+                    }
+                }
             }
         }
 
