@@ -21,9 +21,7 @@ pipeline {
                 }
                 stages {
                     stage('Build on ${PLATFORM}') {
-                        agent {
-                            label 'your-docker-agent-label'
-                        }
+                        agent any
                         steps {
                             script {
                                 def customDockerImage = docker.build("${dockerImage}-${PLATFORM}", "-f Dockerfile .")
@@ -39,9 +37,7 @@ pipeline {
         }
 
         stage('Test') {
-            agent {
-                label 'your-docker-agent-label'
-            }
+            agent any
             steps {
                 script {
                     // Use the same Docker image for testing
