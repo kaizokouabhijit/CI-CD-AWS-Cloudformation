@@ -29,7 +29,7 @@ pipeline {
                                 def customDockerImage = docker.build("${dockerImage}-${PLATFORM}", "-f Dockerfile .")
 
                                 customDockerImage.inside {
-                                    // Your build steps here, you can use the PLATFORM variable
+                                    echo "testing build"
                                 }
                             }
                         }
@@ -46,7 +46,7 @@ pipeline {
                 script {
                     // Use the same Docker image for testing
                     docker.image("${dockerImage}-linux").inside {
-                        // Your test steps here
+                       echo "testing tst"
                     }
                 }
             }
