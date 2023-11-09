@@ -14,7 +14,6 @@ pipeline {
         AUTHPWD = credentials('AUTHPWD')
         VAULTTOKEN = credentials('VAULTTOKEN')
     }
-    // agent { label 'tvsopsjenkins03.cloud.operative.com || tvsopsjenkins02.cloud.operative.com' }
 	agent any
 
     stages {
@@ -76,8 +75,7 @@ pipeline {
                 axes {
                     axis {
                         name 'lambdas'
-                        values "data-ingestor-nielsen", "inference", "config-resolution", "inference-data-enrichment", "ingest-payload-processor", "load-csv-to-rds", "aos-integration", "ingest-online-features", "update-forecast-with-actual", "job-monitoring", "partial-enrichment", "hutput-forecasting", "endpoint-trigger"
-                    }
+                        values 'Java', 'DevOps'
                 }
                 stages {
                     stage('Build')
