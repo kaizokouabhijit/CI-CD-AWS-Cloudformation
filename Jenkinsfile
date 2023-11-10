@@ -36,7 +36,7 @@ pipeline {
                             script {
                                 
 
-                                customDockerImage.inside {
+                               docker.image("test-image").inside {
                                     echo "testing build"
                                 }
                             }
