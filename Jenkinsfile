@@ -17,8 +17,9 @@ pipeline {
             steps
             {
                 script
-                {
-                    env.AGENT_NAME = currentBuild.agent
+                {    
+                    echo "current agent: ${env.AGENT_NAME}"
+                    env.AGENT_NAME = currentBuild.getBuiltOnStr()
                     echo "Selected agent: ${env.AGENT_NAME}"
                     def customDockerImage = docker.build("test-image", "-f Dockerfile .")
                 }
