@@ -72,7 +72,7 @@ pipeline {
         success{
                 script{
                     
-            sh 'docker rmi -f ${IMAGE_ID}'
+            sh "docker rmi -f ${IMAGE_ID}"
         }}}
     
 }
