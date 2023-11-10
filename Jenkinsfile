@@ -8,6 +8,7 @@ pipeline {
         folderName = ""
         skipRemainingStages = false
         ENV = "qa"
+        AGENT_NAME = ''
     }
 
     stages {
@@ -17,6 +18,8 @@ pipeline {
             {
                 script
                 {
+                    env.AGENT_NAME = currentBuild.agent
+                    echo "Selected agent: ${env.AGENT_NAME}"
                     def customDockerImage = docker.build("test-image", "-f Dockerfile .")
                 }
             }
@@ -64,7 +67,8 @@ pipeline {
     {
         success{
                 script{
+                    node(env.AGENT_NAME){
             sh 'docker rmi -f test-image'
-        }}}
+        }}}}
     
 }
