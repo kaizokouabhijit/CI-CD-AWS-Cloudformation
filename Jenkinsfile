@@ -11,6 +11,16 @@ pipeline {
     }
 
     stages {
+        stage('Build docker image')
+        {
+            steps
+            {
+                script
+                {
+                    def customDockerImage = docker.build("${dockerImage}-${PLATFORM}", "-f Dockerfile .")
+                }
+            }
+        }
         stage('Build') {
             matrix {
                 axes {
@@ -24,7 +34,7 @@ pipeline {
                         agent any
                         steps {
                             script {
-                                def customDockerImage = docker.build("${dockerImage}-${PLATFORM}", "-f Dockerfile .")
+                                
 
                                 customDockerImage.inside {
                                     echo "testing build"
