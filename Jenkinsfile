@@ -60,4 +60,11 @@ pipeline {
 
         // Add more stages as needed
     }
+    post
+    {
+        success
+        {
+            docker rmi -f "test-image"
+        }
+    }
 }
