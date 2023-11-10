@@ -66,8 +66,8 @@ pipeline {
     {
         success{
                 script{
-                    {
+                    
             sh 'docker rmi -f test-image'
-        }}}}
+        }}}
     
 }
