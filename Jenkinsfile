@@ -22,7 +22,8 @@ pipeline {
                 {    
                     echo "Selected agent: ${env.AGENT_NAME}"
                     def customDockerImage = docker.build("test-image:tag", "-f Dockerfile .")
-                    IMAGE_ID = customDockerImage.getId()
+                    IMAGE_ID = customDockerImage.imageName
+
                 }
             }
         }
