@@ -1,3 +1,5 @@
+def IMAGE_ID = ''
+
 pipeline {
     agent any
     options {
@@ -20,6 +22,7 @@ pipeline {
                 {    
                     echo "Selected agent: ${env.AGENT_NAME}"
                     def customDockerImage = docker.build("test-image:tag", "-f Dockerfile .")
+                    IMAGE_ID = customDockerImage.getId()
                 }
             }
         }
@@ -67,7 +70,7 @@ pipeline {
         success{
                 script{
                     
-            sh 'docker rmi -f test-image:tag'
+            sh 'docker rmi -f ${IMAGE_ID}'
         }}}
     
 }
