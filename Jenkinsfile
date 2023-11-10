@@ -62,9 +62,10 @@ pipeline {
     }
     post
     {
+        success{
             steps{
                 script{
             docker rmi -f "test-image"
-        }}}
+        }}}}
     
 }
