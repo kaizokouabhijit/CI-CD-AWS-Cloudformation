@@ -19,7 +19,7 @@ pipeline {
                 script
                 {    
                     echo "Selected agent: ${env.AGENT_NAME}"
-                    def customDockerImage = docker.build("test-image", "-f Dockerfile .")
+                    def customDockerImage = docker.build("test-image:tag", "-f Dockerfile .")
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
                             script {
                                 
 
-                               docker.image("test-image").inside {
+                               docker.image("test-image:tag").inside {
                                     echo "testing build"
                                 }
                             }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     // Use the same Docker image for testing
-                    docker.image("test-image").inside {
+                    docker.image("test-image:tag").inside {
                        echo "testing tst"
                     }
                 }
@@ -67,7 +67,7 @@ pipeline {
         success{
                 script{
                     
-            sh 'docker rmi -f test-image'
+            sh 'docker rmi -f test-image:tag'
         }}}
     
 }
