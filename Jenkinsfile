@@ -22,7 +22,8 @@ pipeline {
                 {    
                     echo "Selected agent: ${env.AGENT_NAME}"
                     def customDockerImage = docker.build("test-image:tag", "-f Dockerfile .")
-                    IMAGE_ID = customDockerImage.imageName
+                    IMAGE_ID = sh(script: "docker inspect -f '{{.Id}}' test-image:${BUILD_NUMBER}", returnStdout: true).trim()
+                    echo "IMAGE_ID - ${IMAGE_ID}"
 
                 }
             }
