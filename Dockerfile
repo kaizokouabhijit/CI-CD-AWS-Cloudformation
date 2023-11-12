@@ -12,6 +12,8 @@ RUN apt-get update && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     apt-get update && \
     apt-get install -y docker-ce
+RUN apt-get install -y python3 python3-pip
+RUN pip3 install docker-compose
 
 # ADD path to folder\* \code
 RUN echo "building docker image"
