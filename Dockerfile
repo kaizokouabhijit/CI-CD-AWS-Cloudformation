@@ -20,12 +20,12 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y awscli < "/dev/null"
 
-# Install OpenJDK 8
+# Install the default JDK available in the Debian repository
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk
+    apt-get install -y default-jdk
 
 # Set Java Home environment variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/default-java
 
 # Install dos2unix
 RUN apt-get install -y dos2unix
