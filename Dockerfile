@@ -11,7 +11,6 @@ RUN apt-get update && \
         ca-certificates \
         curl \
         software-properties-common \
-        docker-ce \
         python3 \
         python3-pip \
         dos2unix \
@@ -31,11 +30,16 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 # Install dos2unix
 RUN apt-get install -y dos2unix
 
+# Install Docker using the official installation script
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
+    sh get-docker.sh && \
+    rm get-docker.sh
+
+# Set up Docker Compose
+RUN pip3 install docker-compose
+
 # Set the working directory
 WORKDIR /code
-
-# Install Docker Compose
-RUN pip3 install docker-compose
 
 # Display a message indicating the completion of the Docker image build
 RUN echo "Building Docker image completed"
