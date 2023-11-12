@@ -1,40 +1,43 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-# THE CONTAINER IN THIS DOCKER IMAGE CAN BE USED TO RUN A CLOUDFORMATION DEPLOYMENT TASK USING SHELL SCRIPT AND DOCKER
-# THE CONTAINER WILL HAVE THE ABILITY TO CREATE DOCKER IMAGES INSIDE IT
-# Base image
-FROM ubuntu:latest
-
-# Install Docker and other required packages
+# Set environment variable to avoid interactive prompts during apt-get installs
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required dependencies
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    apt-get update && \
-    apt-get install -y docker-ce
+    apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common \
+        docker-ce \
+        python3 \
+        python3-pip \
+        dos2unix \
+        && rm -rf /var/lib/apt/lists/*
 
-# ADD path to folder\* \code
-RUN echo "building docker image"
+# Install AWS CLI
+RUN apt-get update && \
+    apt-get install -y awscli < "/dev/null"
 
-WORKDIR /code
+# Install OpenJDK 8
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk
 
-
-# Run below commands inside the container cli
-
-# To install awscli
-RUN apt-get update && apt-get install -y awscli < "/dev/null"
-RUN apt-get update && apt-get install -y openjdk-8-jdk
+# Set Java Home environment variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
-# To change permission of file
-# RUN chmod 777 filename
+# Install dos2unix
+RUN apt-get install -y dos2unix
 
-# dos2unis is good for working with .sh, .yaml type of files
-RUN apt-get install dos2unix
-# RUN dos2unix ./filename.sh
+# Set the working directory
+WORKDIR /code
 
-# to mount folders in the container image, use the command below to run the container
-# docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/on/your/host:/path/in/container imageName
+# Install Docker Compose
+RUN pip3 install docker-compose
 
+# Display a message indicating the completion of the Docker image build
+RUN echo "Building Docker image completed"
 
-
+# Other Dockerfile commands...
