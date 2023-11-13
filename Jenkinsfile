@@ -70,14 +70,18 @@ pipeline {
         }
 stage("Build dynamic stage")
       {
-          parallel buildLambda.collectEntries { name ->
-                ["Build ${name}": {
-                    echo "Building ${name}..."
-                    // Add your build steps here
-                }, "Test ${name}": {
-                    echo "Testing ${name}..."
-                    // Add your test steps here
-                }]
+         steps {
+                script {
+                    buildLambda.each { name ->
+                        parallel "Build ${name}": {
+                            echo "Building ${name}..."
+                            // Add your build steps here
+                        }, "Test ${name}": {
+                            echo "Testing ${name}..."
+                            // Add your test steps here
+                        }
+                    }
+                }
             }
       }
                 
