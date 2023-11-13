@@ -1,4 +1,4 @@
-def buildLambda = []
+def buildLambda = ["Java", "DevOps"]
 
 pipeline {
     agent any
