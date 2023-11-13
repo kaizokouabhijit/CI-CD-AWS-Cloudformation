@@ -73,14 +73,14 @@ stage("Build dynamic stage")
           script {
             for (name in buildLambda) {
                 stage("Build ${name}") {
-                    steps {
+                    
                         echo "Building ${name}..."
-                    }
+                    
                 }
                 stage("Test ${name}") {
-                    steps {
+                    
                         echo "Testing ${name}..."
-                    }
+                    
                 }
             }
         }}
