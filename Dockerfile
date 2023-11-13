@@ -41,6 +41,9 @@ RUN pip3 install docker-compose
 # Set the working directory
 WORKDIR /code
 
+COPY Java/ /code
+COPY DevOps/ /code
+
 # Display a message indicating the completion of the Docker image build
 RUN echo "Building Docker image completed"
 
