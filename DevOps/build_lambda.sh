@@ -12,6 +12,7 @@ fi
 lambda[0]=aws
 lambda[1]=lambda
 
+
 # Flag variable to track failure
 hasFailure=false
 
