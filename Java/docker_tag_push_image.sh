@@ -1,4 +1,6 @@
-# set -e
+
+#!/bin/bash
+set -e
 
 # main_image="my-$1-$2-image"
 # # app_image="my-app-image"
