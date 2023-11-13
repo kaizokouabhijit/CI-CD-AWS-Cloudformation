@@ -41,10 +41,7 @@ pipeline {
                     }
                     
                     echo "buildLambda - ${buildLambda}"
-                    if (buildLambda.isEmpty()) {
-                        skipRemainingStages = true
-                    }
-                    
+                                       
                 }
             }
 	    }
