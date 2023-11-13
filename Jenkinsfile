@@ -1,4 +1,4 @@
-def buildLambda = []
+def buildLambda = ["Java", "DevOps"]
 
 pipeline {
     agent any
@@ -68,25 +68,6 @@ pipeline {
             }
         }
 
-                stage("Build and Test") {
-
-       parallel buildLambda.collectEntries { name ->
-            ["Build ${name}": {
-                stage("Build ${name}") {
-                    steps {
-                        echo "Building ${name}..."
-                        // Add your build steps for each name here
-                    }
-                }
-            },
-             "Test ${name}": {
-                stage("Test ${name}") {
-                    steps {
-                        echo "Testing ${name}..."
-                        // Add your test steps for each name here
-                    }
-                }
-            }]
-        }}
+                
     }
 }
