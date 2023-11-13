@@ -62,7 +62,8 @@ pipeline {
 				    script{
 					    echo "here"
 					    echo "pwd - ${pwd}"
-					    echo "${dir}"
+					   def files = sh(script: "ls", returnStdout: true).trim()
+echo "Files in the current directory: ${files}"
 				    }
 			    }
 	    }
