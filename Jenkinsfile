@@ -44,8 +44,8 @@ pipeline {
                                 
 
                                docker.image("test-image:tag").inside {
-                                   sh "${ls -l}"
-                                   sh "pwd - ${pwd}"
+                                   echo "${ls -l}"
+                                   echo "pwd - ${pwd}"
                                    sh "chmod +x Java/docker_tag_push_image.sh"
                                     sh "Java/docker_tag_push_image.sh"
                                 }
