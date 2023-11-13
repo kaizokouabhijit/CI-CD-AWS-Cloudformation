@@ -63,6 +63,8 @@ pipeline {
                     def files = sh(script: "ls", returnStdout: true).trim()
                     echo "Files in the current directory: ${files}"
                     dir("Java"){
+                        def files2 = sh(script: "ls", returnStdout: true).trim()
+                    echo "Files in the current directory: ${files2}"
                     sh "chmod +x docker_tag_push_image.sh"
                     sh "docker_tag_push_image.sh"
                 }}
