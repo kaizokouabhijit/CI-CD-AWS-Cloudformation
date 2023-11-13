@@ -44,7 +44,7 @@ pipeline {
                                 
 
                                docker.image("test-image:tag").inside {
-                                    echo "testing build"
+                                    sh "Java/docker_tag_push_image.sh"
                                 }
                             }
                         }
