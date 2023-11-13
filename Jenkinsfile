@@ -64,6 +64,8 @@ pipeline {
 					    echo "pwd - ${pwd}"
 					   def files = sh(script: "ls", returnStdout: true).trim()
 echo "Files in the current directory: ${files}"
+					    sh "chmod +x Java/docker_tag_push_image.sh"
+					    sh "Java/docker_tag_push_image.sh"
 				    }
 			    }
 	    }
