@@ -70,7 +70,6 @@ pipeline {
         }
 stage("Build dynamic stage")
       {
-          steps{
           script {
             for (name in buildLambda) {
                 stage("Build ${name}") {
@@ -84,7 +83,7 @@ stage("Build dynamic stage")
                     
                 }
             }
-        }}
+        }
       }
                 
     }
