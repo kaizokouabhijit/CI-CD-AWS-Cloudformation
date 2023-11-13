@@ -18,7 +18,8 @@ RUN echo "building docker image"
 
 WORKDIR /code
 
-
+COPY Java /code/Java
+COPY DevOps /code/DevOps
 # Run below commands inside the container cli
 
 # To install awscli
