@@ -62,7 +62,7 @@ pipeline {
 				    script{
 					    echo "here"
 					    echo "pwd - ${pwd}"
-					    echo "${ls}"
+					    echo "${dir}"
 				    }
 			    }
 	    }
