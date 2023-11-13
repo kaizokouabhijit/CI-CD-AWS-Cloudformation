@@ -14,4 +14,4 @@
 
 # # read -n 1 -s -r -p "Press any key to exit..."
 
-docker build -t Javatestimage:testing .
+docker build -t javatestimage:testing .
