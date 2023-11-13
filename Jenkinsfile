@@ -62,18 +62,12 @@ pipeline {
                     echo "pwd - ${pwd}"
                     def files = sh(script: "ls", returnStdout: true).trim()
                     echo "Files in the current directory: ${files}"
-                    dir("Java"){
-                        def files2 = sh(script: "ls", returnStdout: true).trim()
-                    echo "Files in the current directory: ${files2}"
-                    sh "chmod +x docker_tag_push_image.sh"
-                    sh "./docker_tag_push_image.sh"
-                }}
-            }
-        }
-stage("Build dynamic stage")
-      {
-         steps {
-                script {
+                //     dir("Java"){
+                //         def files2 = sh(script: "ls", returnStdout: true).trim()
+                //     echo "Files in the current directory: ${files2}"
+                //     sh "chmod +x docker_tag_push_image.sh"
+                //     sh "./docker_tag_push_image.sh"
+                // }
                     buildLambda.each { name ->
                         parallel "Build ${name}": {
                             echo "Building ${name}..."
@@ -83,9 +77,10 @@ stage("Build dynamic stage")
                             // Add your test steps here
                         }
                     }
+                    
                 }
             }
-      }
+        }
                 
     }
 }
