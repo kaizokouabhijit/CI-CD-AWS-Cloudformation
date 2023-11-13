@@ -18,15 +18,15 @@ RUN echo "building docker image"
 
 WORKDIR /code
 
-COPY Java /code/Java
-COPY DevOps /code/DevOps
+
 # Run below commands inside the container cli
 
 # To install awscli
 RUN apt-get update && apt-get install -y awscli < "/dev/null"
 RUN apt-get update && apt-get install -y openjdk-8-jdk
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-
+COPY Java /code/Java
+COPY DevOps /code/DevOps
 # To change permission of file
 # RUN chmod 777 filename
 
