@@ -68,7 +68,8 @@ pipeline {
             }
         }
 
-        // Dynamic stages
+                stage("Build and Test") {
+
        parallel buildLambda.collectEntries { name ->
             ["Build ${name}": {
                 stage("Build ${name}") {
@@ -86,6 +87,6 @@ pipeline {
                     }
                 }
             }]
-        }
+        }}
     }
 }
