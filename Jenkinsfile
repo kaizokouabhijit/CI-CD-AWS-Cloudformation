@@ -67,7 +67,7 @@ pipeline {
                 }
             }
         }
-stage("Build dynamic stage)
+stage("Build dynamic stage")
       {
           steps{
           script {
