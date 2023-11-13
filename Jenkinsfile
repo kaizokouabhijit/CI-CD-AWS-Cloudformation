@@ -1,3 +1,5 @@
+def buildLambda = []
+
 pipeline {
     agent any
     options {
