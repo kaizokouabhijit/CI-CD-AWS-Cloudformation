@@ -76,7 +76,7 @@ pipeline {
                         }, "C. Deploy ${name}": {
                             echo "Deploying ${name}..."
                         }, "D. testfinal ${name}": {
-                            echo "testfinal ${name}...")
+                            echo "testfinal ${name}..."})
                     }
                     
                 }
