@@ -69,13 +69,13 @@ pipeline {
                 //     sh "./docker_tag_push_image.sh"
                 // }
                     buildLambda.each { name ->
-                        parallel "Build ${name}": {
+                        parallel ("Build ${name}": {
                             echo "Building ${name}..."
                         }, "Test ${name}": {
                             echo "Testing ${name}..."
                         }, "Deploy ${name}": {
                             echo "Deploying ${name}..."
-                        }
+                        })
                     }
                     
                 }
