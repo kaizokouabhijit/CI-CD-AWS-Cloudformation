@@ -69,5 +69,20 @@ echo "Files in the current directory: ${files}"
 				    }
 			    }
 	    }
+	     script {
+            for (name in buildLambda) {
+                stage("Build ${name}") {
+                    steps {
+                        echo "Building ${name}..."
+                    }
+                }
+		    stage("Test ${name}")
+		    {
+			  echo "Testing ${name}..."   
+		    }
+            }
+        }
     }
 }
+    
+
