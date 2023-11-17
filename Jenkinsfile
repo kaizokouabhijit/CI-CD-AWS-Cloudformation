@@ -14,7 +14,7 @@ pipeline {
         stage("Build") {
             when 
             {
-                expression {!booleanparam}
+                expression {booleanparam}
             }
             steps {
                 script {
