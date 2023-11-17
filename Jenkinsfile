@@ -43,7 +43,7 @@ pipeline {
                     echo "stringc - ${stringc}"
 
                     // Loop over the listb
-                    for (int i = 0; i < listb.size(); i++) {
+                    while(listb.size()>0) {
                         def currentItem = listb[i]
                         booleanparam = false
                         echo "booleanparam - ${booleanparam}"
@@ -62,14 +62,7 @@ pipeline {
                             ]
 
                         // Trigger the build with the modified listb and STRINGC
-                        def buildResult = build job: "${JOB_NAME}", parameters: buildParams
-
-                        // Check if the build was successful
-                        if (buildResult == 'SUCCESS') {
-                            echo "Build successful, continuing with the next item in listb."
-                        } else {
-                            error "Build failed, stopping the pipeline."
-                        }
+                        build job: "${JOB_NAME}", parameters: buildParams
                     }
                 }
             }
