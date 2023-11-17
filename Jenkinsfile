@@ -23,7 +23,7 @@ pipeline {
                         listb = listb.drop(1)
 
                         // Trigger the build with the modified listb
-                        def buildResult = build job: 'multi-branch-testing', parameters: [
+                        def buildResult = build job: "${JOB_NAME}", parameters: [
                             string(name: 'LISTB', value: listb.join(',')),
                             string(name: 'CURRENT_ITEM', value: currentItem)
                         ]
