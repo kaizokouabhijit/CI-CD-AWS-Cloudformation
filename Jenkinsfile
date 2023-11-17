@@ -99,4 +99,23 @@ pipeline {
             
         }
     }
+    post {
+    always {
+      sendMail()
+    }}
+}
+
+def sendMail() {
+  script {
+  		  def mailRecipients = ''
+          def jobName = currentBuild.fullDisplayName
+          emailext(
+            subject: "[Jenkins] ${jobName}",
+            body: '''${SCRIPT, template="groovy-html.template"}''',
+            mimeType: 'text/html',
+            attachLog: true,
+            to: "${mailRecipients}",
+            replyTo: "${mailRecipients}",
+            recipientProviders: [culprits(), brokenTestsSuspects(), brokenBuildSuspects(), requestor()])
+    }
 }
