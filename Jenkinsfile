@@ -69,6 +69,24 @@ pipeline {
                     }
                 }
             }
+            stages
+            {
+                agent {
+                    dockerfile {
+                        filename 'Dockerfile'
+                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                        reuseNode true
+                    }
+                }
+                stage ("Testing inner stages")
+                {
+                    steps{
+                        script{
+                            echo "Testing inner stages"
+                        }
+                    }
+                }
+            }
         }
         stage("Test")
         {
@@ -78,33 +96,7 @@ pipeline {
                     echo "in testing stage"
                 }
             }
-            stages
-    {
-        agent {
-                    dockerfile {
-                        filename 'Dockerfile'
-                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                        reuseNode true
-                    }
-                }
-        stage("second stages")
-        {
             
-            when 
-            {
-                expression {!booleanparam}
-            } 
-            step
-            {
-                script
-                {
-                    echo "listb - ${listb}"
-                    echo "stringc - ${stringc}"
-                }
-            }
         }
     }
-        }
-    }
-    
 }
