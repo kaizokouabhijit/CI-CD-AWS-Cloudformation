@@ -69,15 +69,20 @@ pipeline {
                     }
                 }
             }
-            stages
-            {
-                agent {
+
+        }
+        stage("Test")
+        {
+            agent {
                     dockerfile {
                         filename 'Dockerfile'
                         args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
                         reuseNode true
                     }
                 }
+                 stages
+            {
+                
                 stage ("Testing inner stages")
                 {
                     steps{
@@ -85,15 +90,6 @@ pipeline {
                             echo "Testing inner stages"
                         }
                     }
-                }
-            }
-        }
-        stage("Test")
-        {
-            steps
-            {
-                script{
-                    echo "in testing stage"
                 }
             }
             
