@@ -1,5 +1,5 @@
 def lista = ["abc", "xyz"]
-def listb = ["abc", "xyz"]
+def listb = ["abc", "xyz", "pqr", "mno"]
 def stringc = ""
 def booleanparam = true
 
@@ -8,13 +8,7 @@ pipeline {
         ENV = "qa"
     }
 
-                agent {
-                    dockerfile {
-                        filename 'Dockerfile'
-                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                        reuseNode true
-                    }
-                }
+    agent any
 
     stages {
         stage("Initialise")
@@ -80,11 +74,16 @@ pipeline {
         }
         stage("Test")
         {
-            when 
-            {
+            when {
                 expression {!booleanparam}
             }
-
+            agent {
+                    dockerfile {
+                        filename 'Dockerfile'
+                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                        reuseNode true
+                    }
+                }
                  stages
             {
                 
