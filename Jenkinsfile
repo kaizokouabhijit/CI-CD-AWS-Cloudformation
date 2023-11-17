@@ -24,7 +24,7 @@ pipeline {
                     // Loop over the listb
                     for (int i = 0; i < listb.size(); i++) {
                         def currentItem = listb[i]
-
+                        booleanparam = false
                         // Modify listb by removing the first element
                         listb = listb.drop(1)
                         echo "listb after drop - ${listb}"
@@ -54,6 +54,16 @@ pipeline {
                     }
                 }
             }
+        }
+        stage("Test")
+        {
+            steps
+            {
+                script{
+                    echo "in testing stage"
+                }
+            }
+            
         }
     }
 }
