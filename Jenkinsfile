@@ -8,7 +8,13 @@ pipeline {
         ENV = "qa"
     }
 
-    agent any
+    agent {
+                    dockerfile {
+                        filename 'Dockerfile'
+                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                        reuseNode true
+                    }
+                }
 
     stages {
         stage("Initialise")
