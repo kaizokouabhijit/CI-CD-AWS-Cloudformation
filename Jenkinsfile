@@ -22,10 +22,12 @@ pipeline {
                             stringc = params.STRINGC
                             
                         }
+                    echo "stringc = ${stringc}"
                     if (params.BOOLEAN_PARAM) {
                             booleanparam = params.BOOLEAN_PARAM
                             
                         }
+                    echo "booleanparam = ${booleanparam}" 
                     
                 }
                 
