@@ -8,13 +8,7 @@ pipeline {
         ENV = "qa"
     }
 
-    agent {
-                    dockerfile {
-                        filename 'Dockerfile'
-                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                        reuseNode true
-                    }
-                }
+    agent any
 
     stages {
         stage("Initialise")
@@ -85,6 +79,32 @@ pipeline {
                 }
             }
             
+        }
+    }
+    stages
+    {
+        agent {
+                    dockerfile {
+                        filename 'Dockerfile'
+                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                        reuseNode true
+                    }
+                }
+        stage("second stages")
+        {
+            
+            when 
+            {
+                expression {!booleanparam}
+            } 
+            step
+            {
+                script
+                {
+                    echo "listb - ${listb}"
+                    echo "stringc - ${stringc}"
+                }
+            }
         }
     }
 }
