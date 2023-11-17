@@ -1,6 +1,7 @@
 def lista = ["abc", "xyz"]
 def listb = ["abc", "xyz", "pqr", "mno"]
 def stringc = ""
+def booleanparam = true
 
 pipeline {
     environment {
@@ -11,6 +12,10 @@ pipeline {
 
     stages {
         stage("Build") {
+            when 
+            {
+                expression {!booleanparam}
+            }
             steps {
                 script {
                     echo "listb - ${listb}"
@@ -22,6 +27,7 @@ pipeline {
 
                         // Modify listb by removing the first element
                         listb = listb.drop(1)
+                        echo "listb after drop - ${listb}"
 
                         // Check if STRINGC is provided as a parameter
                         def buildParams = []
@@ -32,7 +38,7 @@ pipeline {
                         echo "stringc value afterwards - ${stringc}"
                         buildParams = [
                                 string(name: 'STRINGC', value: currentItem),
-                                // booleanParam(name: 'BOOLEAN_PARAM', value: params.BOOLEAN_PARAM ?: booleanParam)
+                                booleanParam(name: 'BOOLEAN_PARAM', value: booleanparam)
 
                             ]
 
