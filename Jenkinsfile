@@ -11,6 +11,26 @@ pipeline {
     agent any
 
     stages {
+        stage("Initialise")
+        {
+            steps
+            {
+                script
+                {
+                    echo "in initialise step"
+                    if (params.STRINGC) {
+                            stringc = params.STRINGC
+                            
+                        }
+                    if (params.BOOLEAN_PARAM) {
+                            booleanparam = params.BOOLEAN_PARAM
+                            
+                        }
+                    
+                }
+                
+            }
+        }
         stage("Build") {
             when 
             {
@@ -31,10 +51,7 @@ pipeline {
 
                         // Check if STRINGC is provided as a parameter
                         def buildParams = []
-                        if (params.STRINGC) {
-                            stringc = params.STRINGC
-                            
-                        }
+                        
                         echo "stringc value afterwards - ${stringc}"
                         buildParams = [
                                 string(name: 'STRINGC', value: currentItem),
