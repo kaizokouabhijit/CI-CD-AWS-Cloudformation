@@ -107,15 +107,15 @@ pipeline {
 
 def sendMail() {
   script {
-  		  def mailRecipients = ''
+  		  
           def jobName = currentBuild.fullDisplayName
           emailext(
             subject: "[Jenkins] ${jobName}",
             body: '''${SCRIPT, template="groovy-html.template"}''',
             mimeType: 'text/html',
             attachLog: true,
-            to: "${mailRecipients}",
-            replyTo: "${mailRecipients}",
+            to: "clashofclans1984123@gmail.com",
+            replyTo: "abhijitshubham@gmail.com",
             recipientProviders: [culprits(), brokenTestsSuspects(), brokenBuildSuspects(), requestor()])
     }
 }
