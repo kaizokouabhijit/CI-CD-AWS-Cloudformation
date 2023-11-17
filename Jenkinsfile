@@ -8,7 +8,13 @@ pipeline
 	{
 		ENV = "qa"
 	}
-agent any
+agent {
+                dockerfile {
+                    filename 'Dockerfile'
+                    args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+                    reuseNode true
+                }
+            }
 	stages
 	{
 		stage("Build")
@@ -17,28 +23,11 @@ agent any
 			{
 				script
 				{
-					echo "ENV - ${ENV}"
-					echo "env.ENV  - ${env.ENV}"
+					echo "listb - ${listb}"
+					echo "lista  - ${lista}"
 					
 
-					if (env.BRANCH_NAME == "main")
-                    {
-                        echo "branch name is main"
-                        ENV = "stg"
-                    }
-					def lastCommitID = env.GIT_PREVIOUS_SUCCESSFUL_COMMIT ?: env.GIT_PREVIOUS_COMMIT
-
-if (lastCommitID == null) {
-	echo "Setting last commit to head"
-    lastCommitID = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-}
-                    def revlist = sh(script: "git rev-list ${lastCommitID}~...HEAD", returnStdout: true).trim()
-                    def commitList = revlist.split("\n") as List
-		echo "commitList - ${commitList}"
-					
-					
-					echo "ENV now - ${ENV}"
-					echo "env.ENV now - ${env.ENV}"
+				
 		
 		
 	    }}}}}
