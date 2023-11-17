@@ -44,7 +44,7 @@ pipeline {
 
                     // Loop over the listb
                     while(listb.size()>0) {
-                        def currentItem = listb[i]
+                        def currentItem = listb[1]
                         booleanparam = false
                         echo "booleanparam - ${booleanparam}"
                         // Modify listb by removing the first element
