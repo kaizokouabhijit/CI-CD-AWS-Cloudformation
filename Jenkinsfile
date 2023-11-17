@@ -12,6 +12,7 @@ pipeline {
 
     stages {
         stage("Initialise")
+        
         {
             steps
             {
@@ -31,6 +32,22 @@ pipeline {
                 }
                 
             }
+        }
+        stage("TestFailure")
+        {
+            when \
+            {
+                expression {!booleanparam}
+            }
+            steps
+            {
+                script
+                {
+                    ech "fail"
+                }
+                
+            }
+            
         }
         stage("Build") {
             when 
