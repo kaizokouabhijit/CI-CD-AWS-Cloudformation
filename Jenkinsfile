@@ -18,6 +18,8 @@ pipeline {
                 script
                 {
                     echo "in initialise step"
+                    echo "booleanparam = ${booleanparam}" 
+                    
                     if (params.STRINGC) {
                             stringc = params.STRINGC
                             
@@ -47,6 +49,7 @@ pipeline {
                     for (int i = 0; i < listb.size(); i++) {
                         def currentItem = listb[i]
                         booleanparam = false
+                        echo "booleanparam - ${booleanparam}"
                         // Modify listb by removing the first element
                         listb = listb.drop(1)
                         echo "listb after drop - ${listb}"
