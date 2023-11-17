@@ -115,7 +115,6 @@ def sendMail() {
             mimeType: 'text/html',
             attachLog: true,
             to: "clashofclans1984123@gmail.com",
-            replyTo: "abhijitshubham@gmail.com",
-            recipientProviders: [culprits(), brokenTestsSuspects(), brokenBuildSuspects(), requestor()])
+            replyTo: "abhijitshubham@gmail.com",)
     }
 }
