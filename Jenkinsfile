@@ -73,6 +73,7 @@ pipeline {
                         // Trigger the build with the modified listb and STRINGC
                         build job: "${JOB_NAME}", parameters: buildParams
                     }
+                    booleanparam = true
                 }
             }
 
