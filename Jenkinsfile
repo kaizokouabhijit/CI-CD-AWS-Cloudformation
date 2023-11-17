@@ -1,5 +1,5 @@
 def lista = ["abc", "xyz"]
-def listb = ["abc", "xyz", "pqr", "mno"]
+def listb = ["abc", "xyz"]
 def stringc = ""
 def booleanparam = true
 
@@ -73,6 +73,10 @@ pipeline {
         }
         stage("Test")
         {
+            when 
+            {
+                expression {!booleanparam}
+            }
             agent {
                     dockerfile {
                         filename 'Dockerfile'
