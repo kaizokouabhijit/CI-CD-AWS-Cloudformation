@@ -44,7 +44,7 @@ pipeline {
 
                     // Loop over the listb
                     while(listb.size()>0) {
-                        def currentItem = listb[1]
+                        def currentItem = listb[0]
                         echo "current item - ${currentItem}"
                         booleanparam = false
                         echo "booleanparam - ${booleanparam}"
