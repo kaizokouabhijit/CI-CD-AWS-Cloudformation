@@ -78,10 +78,7 @@ pipeline {
                     echo "in testing stage"
                 }
             }
-            
-        }
-    }
-    stages
+            stages
     {
         agent {
                     dockerfile {
@@ -107,4 +104,7 @@ pipeline {
             }
         }
     }
+        }
+    }
+    
 }
