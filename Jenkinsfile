@@ -65,7 +65,9 @@ pipeline {
                             ]
 
                         // Trigger the build with the modified listb and STRINGC
-                        build job: "${JOB_NAME}", parameters: buildParams
+                       def jobStatus = build job: "${JOB_NAME}", parameters: buildParams
+
+                        echo "job_status is ${jobStatus}"
                     }
                     booleanparam = true
                 }
@@ -77,13 +79,7 @@ pipeline {
             when {
                 expression {!booleanparam}
             }
-            agent {
-                    dockerfile {
-                        filename 'Dockerfile'
-                        args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-                        reuseNode true
-                    }
-                }
+            
                  stages
             {
                 
@@ -91,7 +87,7 @@ pipeline {
                 {
                     steps{
                         script{
-                            echo "Testing inner stages"
+                            ech "Testing inner stages"
                         }
                     }
                 }
