@@ -1,13 +1,10 @@
 
 def lista = ["abc", "xyz"]
 def listb = ["abc", "xyz", "pqr", "mno"]
-
+def ENV = "qa"
 pipeline
 {
-	environment
-	{
-		ENV = "qa"
-	}
+	
 agent any
 	stages
 	{
@@ -17,22 +14,27 @@ agent any
 			{
 				script
 				{
-					echo "ENV - ${ENV}"
-					echo "env.ENV  - ${env.ENV}"
-					
-
-					if (env.BRANCH_NAME == "main")
+					if(env.BRANCH_NAME == "main")
                     {
-                        echo "branch name is main"
-                        ENV = "stg"
+                        ENV ="stg"
+                        echo "in master-standby branch, setting ENV to ${ENV} "
                     }
-					checkout scm
-					def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStatus: true)
-                   			 echo "Changed files: ${changedFiles}"
+					
 					
 					
 					echo "ENV now - ${ENV}"
-					echo "env.ENV now - ${env.ENV}"
 		
 		
-	    }}}}}
+	    }}}
+	stage("Testing")
+		{
+			steps
+			{
+				script
+				{
+					echo "In Testing stage, value of ENV is ${ENV}"
+					
+				}
+			}
+		}
+	}}
