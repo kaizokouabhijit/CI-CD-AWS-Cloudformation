@@ -64,10 +64,13 @@ pipeline {
 
                             ]
 
-                        // Trigger the build with the modified listb and STRINGC
-                       def jobStatus = build job: "${JOB_NAME}", parameters: buildParams
+                       try {
+                    def jobStatus = build job: "${JOB_NAME}", parameters: buildParams
+                    echo "job_status is ${jobStatus}"
 
-                        echo "job_status is ${jobStatus}"
+                } catch (Exception e) {
+                    echo "Build for ${currentItem} failed, but continuing with the next item."
+                }
                     }
                     booleanparam = true
                 }
@@ -106,11 +109,11 @@ def sendMail() {
   		  
           def jobName = currentBuild.fullDisplayName
           emailext(
-            subject: "[Jenkins] ${jobName}",
-            body: '''${SCRIPT, template="groovy-html.template"}''',
-            mimeType: 'text/html',
-            attachLog: true,
-            to: "clashofclans1984123@gmail.com",
-            replyTo: "abhijitshubham@gmail.com",)
+                subject: "Failure - ${currentBuild.fullDisplayName}",
+                body: 'Build failed.',
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                replyTo: 'abhijitshubham@gmail.com',
+                to: 'clashofclans1984123@gmail.com'
+            )
     }
 }
