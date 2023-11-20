@@ -1,41 +1,31 @@
-
-# THE CONTAINER IN THIS DOCKER IMAGE CAN BE USED TO RUN A CLOUDFORMATION DEPLOYMENT TASK USING SHELL SCRIPT AND DOCKER
-# THE CONTAINER WILL HAVE THE ABILITY TO CREATE DOCKER IMAGES INSIDE IT
 # Base image
 FROM ubuntu:latest
 
-# Install Docker and other required packages
-ENV DEBIAN_FRONTEND=noninteractive
+# Install Docker, AWS CLI, dos2unix, and OpenJDK
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
+    apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common \
+    dos2unix \
+    openjdk-8-jdk && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     apt-get update && \
-    apt-get install -y docker-ce
+    apt-get install -y docker-ce && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# ADD path to folder\* \code
-RUN echo "building docker image"
 
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive \
+    JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+# Set the working directory
 WORKDIR /code
 
-
-# Run below commands inside the container cli
-
-# To install awscli
-RUN apt-get update && apt-get install -y awscli < "/dev/null"
-RUN apt-get update && apt-get install -y openjdk-8-jdk
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-COPY Java /code/Java
-COPY DevOps /code/DevOps
-# To change permission of file
-# RUN chmod 777 filename
-
-# dos2unis is good for working with .sh, .yaml type of files
-RUN apt-get install dos2unix
-# RUN dos2unix ./filename.sh
-
-# to mount folders in the container image, use the command below to run the container
-# docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/on/your/host:/path/in/container imageName
-
-
+# Display message
+RUN echo "Building Docker image"
 
