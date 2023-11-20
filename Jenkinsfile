@@ -65,8 +65,7 @@ pipeline {
                             ]
 
                        try {
-                    def jobStatus = build job: "${JOB_NAME}", parameters: buildParams
-                    echo "job_status is ${jobStatus}"
+                    build job: "${JOB_NAME}", parameters: buildParams
 
                 } catch (Exception e) {
                     echo "Build for ${currentItem} failed, but continuing with the next item."
@@ -98,22 +97,6 @@ pipeline {
             
         }
     }
-    post {
-    always {
-      sendMail()
-    }}
+
 }
 
-def sendMail() {
-  script {
-  		  
-          def jobName = currentBuild.fullDisplayName
-          emailext(
-                subject: "Failure - ${currentBuild.fullDisplayName}",
-                body: 'Build failed.',
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                replyTo: 'abhijitshubham@gmail.com',
-                to: 'clashofclans1984123@gmail.com'
-            )
-    }
-}
