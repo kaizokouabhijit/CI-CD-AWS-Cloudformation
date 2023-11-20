@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-
+RUN apt-get update && apt-get install -y awscli < "/dev/null"
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
