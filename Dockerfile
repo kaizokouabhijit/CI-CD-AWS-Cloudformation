@@ -54,5 +54,5 @@
 
 FROM public.ecr.aws/lambda/python:3.9
 
-# RUN yum remove -y gcc
+RUN yum remove -y gcc
 RUN yum install -y gcc
